@@ -19,7 +19,6 @@ const { Server } = require('socket.io')
 let server = require('http').createServer(app)
 const axios = require('axios')
 
-
 let io = new Server(server, {
   cors: {
     origin: "*",
@@ -50,13 +49,7 @@ app.use((err, req, res, next) => {
     response:err.message
 
   })
-
-
-
-
 })
-
-
 
 app.listen(process.env.PORT || 9090, (err) => {
 
