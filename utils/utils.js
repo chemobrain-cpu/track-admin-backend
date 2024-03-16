@@ -188,7 +188,7 @@ module.exports.shipmentNotification = ({
 
 
 
-module.exports.shipmentArrival = ({location}) => {
+module.exports.shipmentArrival = (location) => {
     return `
 <div >
     <p style=" margin-bottom: 40px; width: 100%;text-align: center;font-size:1rem">

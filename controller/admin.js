@@ -663,6 +663,8 @@ module.exports.newHistory = async (req, res, next) => {
 
       } = req.body
 
+      console.log(location)
+
       //find the cossignment
 
       let foundCossignment = await Cossignment.findOne({ _id: cossignment })
