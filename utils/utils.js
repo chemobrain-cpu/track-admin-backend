@@ -200,3 +200,16 @@ module.exports.shipmentArrival = (location) => {
 </div>`
 
 }
+
+
+module.exports.shipmentMessage = (message) => {
+    return `
+<div >
+    <p style=" margin-bottom: 40px; width: 100%;text-align: center;font-size:1rem">
+    ${message}
+    </p>
+   
+
+</div>`
+
+}

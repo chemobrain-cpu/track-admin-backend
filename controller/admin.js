@@ -1,7 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken")
-const { generateAcessToken, shipmentArrival } = require('../utils/utils')
+const { generateAcessToken, shipmentArrival, shipmentMessage } = require('../utils/utils')
 const { Admin, Cossignment, History, } = require("../database/databaseConfig");
 const { validationResult } = require("express-validator");
 const random_number = require('random-number')
@@ -733,6 +733,56 @@ module.exports.newHistory = async (req, res, next) => {
 
       return res.status(200).json({
          response: savedHistory
+      })
+
+   } catch (error) {
+      error.message = error.message || "an error occured try later"
+      return next(error)
+   }
+}
+
+
+
+module.exports.sendEmail = async (req, res, next) => {
+   try {
+
+      let {email,message} = req.body
+      // Create mailjet send email
+      const mailjet = Mailjet.apiConnect(process.env.MAILJET_APIKEY, process.env.MAILJET_SECRETKEY
+      )
+      
+      //skylane@secsonlines.com
+
+      const request = await mailjet.post("send", { 'version': 'v3.1' })
+         .request({
+            "Messages": [
+               {
+                  "From": {
+                     "Email": "skylane@secsonlines.com",
+                     "Name": "secsonlines"
+                  },
+                  "To": [
+                     {
+                        "Email": `${email}`,
+                        "Name": `${email}`
+                     }
+                  ],
+                  "Subject": "SHIPPMENT ARRIVAL",
+                  "TextPart": ``,
+                  "HTMLPart": shipmentMessage(message)
+               }
+            ]
+         })
+
+
+      if (!request) {
+         let error = new Error("could not verify.Try later")
+         return next(error)
+      }
+
+
+      return res.status(200).json({
+         response: 'successfully sent!'
       })
 
    } catch (error) {
