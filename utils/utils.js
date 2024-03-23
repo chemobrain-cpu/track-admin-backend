@@ -37,7 +37,7 @@ module.exports.verifyAdmin = async (req, res, next) => {
     }
 }
 
-module.exports.shipmentNotification = ({
+module.exports.shipmentNotification = (
     shipper_name,
     shipper_phoneNumber,
     shipper_address,
@@ -47,12 +47,12 @@ module.exports.shipmentNotification = ({
     reciever_phoneNumber,
     reciever_address
 
-}) => {
+) => {
     return `
 <div >
     <p style=" margin-bottom: 40px; width: 100%;text-align: center;font-size:1rem">
 
-    An order with the Reference No XHY-8999 has been shipped to you. kindly  visit our website on wwww.skylaneexpress.com to track the shippment with its Reference No
+    An order with the Reference No XHY-8999 has been shipped to you. kindly  visit our website on wwww.secsonlines.com to track the shippment with its Reference No
     </p>
 
     <h2 style=" margin-bottom:30px; width: 100%; text-align: center ">Shippment Information</h2>
