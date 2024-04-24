@@ -109,6 +109,10 @@ const CosignmentSchema = new mongoose.Schema({
     weight: {
         type: String
     },
+    status: {
+        type: String
+    },
+
 })
 
 const HistorySchema = new mongoose.Schema({

@@ -11,6 +11,9 @@ let request = require('request');
 
 const { shipmentNotification } = require('../utils/utils')
 
+
+
+
 module.exports.getAdminFromJwt = async (req, res, next) => {
    try {
       let token = req.headers["header"]
@@ -311,7 +314,8 @@ module.exports.updateCosignment = async (req, res, next) => {
          description,
          length,
          width,
-         height
+         height,
+         status
       } = req.body
 
 
@@ -354,6 +358,7 @@ module.exports.updateCosignment = async (req, res, next) => {
       cossignment_.length = length || ''
       cossignment_.width = width || ''
       cossignment_.height = height || ''
+      cossignment_.status = status || ''
 
       let savedCossignment_ = await cossignment_.save()
 
@@ -428,6 +433,7 @@ module.exports.newCosignment = async (req, res, next) => {
          length,
          width,
          height,
+         
 
       } = req.body
 
@@ -471,6 +477,7 @@ module.exports.newCosignment = async (req, res, next) => {
          length,
          width,
          height,
+         status:'Pending'
       })
 
 
@@ -508,7 +515,8 @@ module.exports.newCosignment = async (req, res, next) => {
                      reciever_name,
                      reciever_email,
                      reciever_phoneNumber,
-                     reciever_address
+                     reciever_address,
+                     `SKYL-${reference_number}`
                   )
                }
             ]
@@ -719,7 +727,7 @@ module.exports.newHistory = async (req, res, next) => {
                   ],
                   "Subject": "SHIPPMENT ARRIVAL",
                   "TextPart": ``,
-                  "HTMLPart": shipmentArrival(location)
+                  "HTMLPart": shipmentArrival(location,foundCossignment.courier_Reference_No)
                }
             ]
          })

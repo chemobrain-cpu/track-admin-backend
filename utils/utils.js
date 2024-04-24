@@ -45,14 +45,14 @@ module.exports.shipmentNotification = (
     reciever_name,
     reciever_email,
     reciever_phoneNumber,
-    reciever_address
-
+    reciever_address,
+    cossignmentNo,
 ) => {
     return `
 <div >
     <p style=" margin-bottom: 40px; width: 100%;text-align: center;font-size:1rem">
 
-    An order with the Reference No XHY-8999 has been shipped to you. kindly  visit our website on wwww.secsonlines.com to track the shippment with its Reference No
+    An order with the Reference No ${cossignmentNo} has been shipped to you. kindly  visit our website on https://www.secsonlines.com to track the shippment with its Reference No
     </p>
 
     <h2 style=" margin-bottom:30px; width: 100%; text-align: center ">Shippment Information</h2>
@@ -188,12 +188,12 @@ module.exports.shipmentNotification = (
 
 
 
-module.exports.shipmentArrival = (location) => {
+module.exports.shipmentArrival = (location,cossignmentNo) => {
     return `
 <div >
     <p style=" margin-bottom: 40px; width: 100%;text-align: center;font-size:1rem">
 
-    Your order with the Reference No XHY-8999 is in  ${location}
+    Your order with the Reference No ${cossignmentNo} is in  ${location}
     </p>
    
 
@@ -208,7 +208,6 @@ module.exports.shipmentMessage = (message) => {
     <p style=" margin-bottom: 40px; width: 100%;text-align: center;font-size:1rem">
     ${message}
     </p>
-   
 
 </div>`
 
